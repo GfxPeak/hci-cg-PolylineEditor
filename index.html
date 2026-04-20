@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI Phase 2: Analysis - Bilal (B23110006091)</title>
+    <style>
+        /* 1. Variables & Base Setup */
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-muted: #64748b;
+            --bg-body: #e2e8f0;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background-color: var(--bg-body); 
+            margin: 0; 
+            padding: 20px;
+        }
+
+        /* 2. Layout Containers */
+        .wrapper { 
+            max-width: 1000px; 
+            margin: 40px auto; 
+            background: white; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); 
+        }
+
+        .header { 
+            background: var(--dark); 
+            color: white; 
+            padding: 40px; 
+            text-align: center; 
+        }
+
+        .content { padding: 40px; }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+            margin-top: 20px; 
+        }
+
+        /* 3. Typography & Components */
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: -1px; }
+        
+        h2 { 
+            border-left: 4px solid var(--primary); 
+            padding-left: 15px; 
+            font-size: 1.5rem; 
+            margin-top: 40px; 
+        }
+
+        h3 { color: var(--primary); margin-bottom: 10px; }
+
+        .card { 
+            background: var(--light); 
+            padding: 25px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0; 
+        }
+
+        .key-badge { 
+            background: var(--primary); 
+            color: white;
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-family: monospace; 
+            font-weight: bold;
+        }
+
+        /* 4. Deployment/Canvas Section */
+        .deployment-zone { 
+            background: #1e293b; 
+            padding: 40px; 
+            border-radius: 12px; 
+            margin-top: 40px; 
+            color: white; 
+        }
+
+        .canvas-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
+        }
+
+        .canvas-header h3 { color: white; margin: 0; }
+
+        canvas { 
+            background: white; 
+            display: block; 
+            margin: 0 auto; 
+            border-radius: 8px; 
+            cursor: crosshair; 
+            width: 800px; 
+            height: 500px; 
+            max-width: 100%;
+        }
+
+        .footer { 
+            text-align: center; 
+            padding: 30px; 
+            color: var(--text-muted); 
+            font-size: 0.85rem; 
+            border-top: 1px solid #e2e8f0; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <h1>PolyLine Editor: Phase 2</h1>
+        <p>Task Analysis & Ethnography</p>
+        <p><strong>Muhammad Bilal Shahid</strong> | Seat No: <strong>B23110006091</strong></p>
+    </div>
+
+    <div class="content">
+        <h2>Phase 2: Analysis Context</h2>
+        <p>As per the Interaction Design Process (Figure 5.1), this phase takes the "What is wanted" from Requirements (Phase 1) and performs Task Analysis and Ethnography.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Task Analysis Focus</h3>
+                <p><strong>The Execution:</strong> Breaking down user actions into sequential physical steps to understand the gap between human intent and the computer system's response.</p>
+                <p><strong>The Flow:</strong> Mapping exactly how physical keyboard interrupts and mouse clicks translate into mathematical canvas operations.</p>
+            </div>
+            <div class="card">
+                <h3>Ethnography Report</h3>
+                <p>Observing real-world physical drawing reveals that fixed marks cause anxiety. By treating lines as fluid data arrays, our system removes the fear of permanent errors. <br><br> <a href="ethnography_report.pdf" style="color: var(--primary); font-weight: bold; text-decoration: none;">📄 Download Full PDF Report</a></p>
+            </div>
+        </div>
+
+        <h2>Task Analysis Breakdown</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Sequential User Steps</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><span class="key-badge">B</span> Target (x,y) → Press key → Array mapped</li>
+                    <li style="margin-bottom: 8px;"><span class="key-badge">M</span> Hover near → Press key → Click to lock</li>
+                    <li style="margin-bottom: 8px;"><span class="key-badge">D</span> Hover near → Press key → Vertex bridged</li>
+                    <li style="margin-bottom: 8px;"><span class="key-badge">R</span> Press key → Canvas and memory cleared</li>
+                    <li style="margin-bottom: 8px;"><span class="key-badge">Q</span> Press key → Application cycle terminated</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Ethnographic Translations</h3>
+                <ul>
+                    <li>Targeted erasure prevents 'area-of-effect' damage</li>
+                    <li>Liquid adjustment replaces physical erasing needs</li>
+                    <li>Design paradigm shifts to rapid execution</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="deployment-zone">
+            <div class="canvas-header">
+                <h3>Deployed PolyLine Prototype</h3>
+                <div>Status: <strong style="color: #4ade80;">Live</strong></div>
+            </div>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">
+                Press the keyboard triggers listed above to interact with the canvas below.
+            </p>
+            <canvas id="polylineCanvas"></canvas>
+        </div>
+
+        <div class="footer">
+            <p>Team: Bisma, Bilal, Omaima, Muzammil | HCI - CG Polyline Editor Project 2026</p>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
