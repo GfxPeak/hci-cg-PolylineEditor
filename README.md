@@ -21,7 +21,7 @@ View my analysis documentation and the live application here:
 **[Insert Your GitHub Pages Link Here]**
 
 ## Team Repositories
-* **Student A (Requirements):** Bisma (B23110006022) - (https://github.com/BismaLimbada/PolylineEditor/)
-* **Student B (Analysis):** Muhammad Bilal Shahid (B23110006091) - [You are here]
-* **Student C (Design):** Omaima Fatima (132) - [Link to Omaima's Repo]
-* **Student D (Implementation):** Muzammil Hussain (108) - [Link to Muzammil's Repo]
+* **(Requirements):** Bisma (B23110006022) - (https://github.com/BismaLimbada/PolylineEditor/)
+* **(Analysis):** Muhammad Bilal Shahid (B23110006091) - (https://github.com/GfxPeak/hci-cg-PolylineEditor)
+* **(Design):** Omaima Fatima (132) - (https://github.com/omaima-13/PolyLineEditor)
+* **(Implementation):** Muzammil Hussain (108) - (https://github.com/muzammilhussainnn/PolylLineEditor)
