@@ -18,7 +18,7 @@ My specific phase documents include:
 
 ## Live Deployment
 View my analysis documentation and the live application here:
-**[Insert Your GitHub Pages Link Here]**
+**(https://gfxpeak.github.io/hci-cg-PolylineEditor/)**
 
 ## Team Repositories
 * **(Requirements):** Bisma (B23110006022) - (https://github.com/BismaLimbada/PolylineEditor/)
