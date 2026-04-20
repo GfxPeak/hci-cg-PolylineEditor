@@ -75,35 +75,89 @@
             border-radius: 4px; 
             font-family: monospace; 
             font-weight: bold;
+            display: inline-block;
+            min-width: 15px;
+            text-align: center;
         }
 
-        /* 4. Deployment/Canvas Section */
+        /* 4. Deployment/Canvas Section (UPDATED FOR NEW DESIGN) */
         .deployment-zone { 
             background: #1e293b; 
-            padding: 40px; 
+            padding: 30px; 
             border-radius: 12px; 
             margin-top: 40px; 
             color: white; 
         }
 
         .canvas-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 15px; 
+            margin-bottom: 20px; 
         }
 
         .canvas-header h3 { color: white; margin: 0; }
 
+        /* App Interface Layout */
+        .app-layout {
+            display: flex;
+            gap: 20px;
+            height: 500px; /* Fixed height for the app space */
+        }
+
+        .canvas-container {
+            flex: 1; /* Takes up remaining space */
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
         canvas { 
-            background: white; 
             display: block; 
-            margin: 0 auto; 
-            border-radius: 8px; 
             cursor: crosshair; 
-            width: 800px; 
-            height: 500px; 
-            max-width: 100%;
+        }
+
+        /* Right Side Tools Panel */
+        .tools-panel {
+            width: 250px;
+            background: #0f172a; /* Darker panel background */
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid #334155;
+        }
+
+        .tools-panel h4 {
+            margin: 0;
+            color: white;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        .status-box {
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #4ade80; /* Green accent for active status */
+            border: 1px solid #334155;
+            font-size: 0.9em;
+        }
+
+        .shortcut-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .shortcut-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            font-size: 0.9em;
         }
 
         .footer { 
@@ -165,12 +219,28 @@
         <div class="deployment-zone">
             <div class="canvas-header">
                 <h3>Deployed PolyLine Prototype</h3>
-                <div>Status: <strong style="color: #4ade80;">Live</strong></div>
             </div>
-            <!-- <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 20px;">
-                Press the keyboard triggers listed above to interact with the canvas below.
-            </p> -->
-            <canvas id="polylineCanvas"></canvas>
+            
+            <div class="app-layout">
+                <div class="canvas-container" id="canvasWrapper">
+                    <canvas id="polylineCanvas"></canvas>
+                </div>
+                
+                <div class="tools-panel">
+                    <h4>PolyLine Tools</h4>
+                    
+                    <div id="currentStatus" class="status-box">Mode: Idle</div>
+                    
+                    <div style="flex-grow: 1;"></div> <h5 style="margin: 0; color: #94a3b8;">Available Shortcuts</h5>
+                    <ul class="shortcut-list">
+                        <li><span class="key-badge">B</span> Begin Line</li>
+                        <li><span class="key-badge">M</span> Move Point</li>
+                        <li><span class="key-badge">D</span> Delete Point</li>
+                        <li><span class="key-badge">R</span> Refresh All</li>
+                        <li><span class="key-badge">Q</span> Quit Tool</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
