@@ -1,13 +1,9 @@
 const canvas = document.getElementById('polylineCanvas');
 const ctx = canvas.getContext('2d');
-const wrapper = document.getElementById('canvasWrapper'); // Get the new flex container
+const wrapper = document.getElementById('canvasWrapper'); 
 
 // Target the new status box in the right panel
 const statusDisplay = document.getElementById('currentStatus');
-
-// Crucial: Set canvas resolution to precisely match its new flexbox container dimensions
-canvas.width = wrapper.offsetWidth;
-canvas.height = wrapper.offsetHeight;
 
 // Application State
 let polylines = []; 
@@ -16,18 +12,24 @@ let mode = 'idle';
 let selectedPoint = null;
 let mousePos = { x: 0, y: 0 };
 
+// --- FIX 1: Robust Canvas Sizing ---
+function resizeCanvas() {
+    canvas.width = wrapper.clientWidth;
+    canvas.height = wrapper.clientHeight;
+    draw();
+}
+// Run once on load, and whenever the window changes size
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
 /**
  * State Manager: Updates logic, cursor, and the right-panel UI Text
  */
 function setMode(newMode, uiText) {
     mode = newMode;
-    
-    // Update the right panel
     if (statusDisplay) {
         statusDisplay.innerHTML = `Mode:<br><strong style="color: white;">${uiText}</strong>`;
     }
-
-    // Update Visual Cursor
     switch(newMode) {
         case 'drawing': canvas.style.cursor = 'crosshair'; break;
         case 'moving_start': canvas.style.cursor = 'grab'; break;
@@ -37,7 +39,6 @@ function setMode(newMode, uiText) {
     }
 }
 
-// Start in Idle
 setMode('idle', 'Idle');
 
 const getDist = (x1, y1, x2, y2) => Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
@@ -99,11 +100,20 @@ function draw() {
     }
 }
 
-// Fix Mouse Coordinates to account for new wrapper position
-canvas.addEventListener('mousemove', (e) => {
+// --- FIX 2: Bulletproof Mouse Coordinate Scaling ---
+function getMousePos(evt) {
     const rect = canvas.getBoundingClientRect();
-    mousePos.x = e.clientX - rect.left;
-    mousePos.y = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;    // Relationship bitmap vs. element for X
+    const scaleY = canvas.height / rect.height;  // Relationship bitmap vs. element for Y
+    
+    return {
+        x: (evt.clientX - rect.left) * scaleX,
+        y: (evt.clientY - rect.top) * scaleY
+    };
+}
+
+canvas.addEventListener('mousemove', (e) => {
+    mousePos = getMousePos(e); // Use the new scaling function
     
     if (mode === 'moving_active' && selectedPoint) {
         polylines[selectedPoint.lIdx][selectedPoint.pIdx] = { ...mousePos };
@@ -111,7 +121,9 @@ canvas.addEventListener('mousemove', (e) => {
     draw();
 });
 
-canvas.addEventListener('mousedown', () => {
+canvas.addEventListener('mousedown', (e) => {
+    mousePos = getMousePos(e); // Use the new scaling function
+
     if (mode === 'drawing' && currentPolyline) {
         currentPolyline.push({ ...mousePos });
         
@@ -170,12 +182,3 @@ window.addEventListener('keydown', (e) => {
     }
     draw();
 });
-
-// Handle window resize so canvas doesn't break if browser size changes
-window.addEventListener('resize', () => {
-    canvas.width = wrapper.offsetWidth;
-    canvas.height = wrapper.offsetHeight;
-    draw();
-});
-
-draw();
